@@ -9,7 +9,7 @@
 }
 
 html {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
@@ -157,6 +157,12 @@ footer span a {
 
 .popup h2 {
     margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.popup p {
+    line-height: 1.5;
 }
 
 .hidden {
