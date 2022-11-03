@@ -14,18 +14,21 @@ playButton.addEventListener('click', function(){
     gridElement.style.setProperty('--sideSquare', sideSquare);
 
 
-    // const myArray = [];
-    // for (let i = 1; i <= 16; i++) {
-    //     let randomNum;
-    //     do {
-    //         randomNum = randomNumber(1, 16);
-    //     } while (myArray.includes(randomNum)){
-    //         myArray.push(randomNum);
-    //     }
-    // }
+    const myArray = [];
+    for (let i = 1; i <= 16; i++) {
+        let randomNum;
+        do {
+            randomNum = randomNumber(1, 16);
+        } while (myArray.includes(randomNum)){
+            myArray.push(randomNum);
+        }
+    }
     
+    // var prova = myArray.slice();
+    // console.log(prova);
 
     for (let i = 1; i <= numberCell; i++) {
+
 
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
@@ -38,8 +41,10 @@ playButton.addEventListener('click', function(){
         })
     }
     console.log(myArray);
-})
 
-function randomNumber (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    function randomNumber (min, max) {
+        return Math.floor(Math.random() * (numberCell - 16 + 1)) + 16;
+    }
+
+
+})
