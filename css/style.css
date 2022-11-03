@@ -1,0 +1,164 @@
+:root {
+    --sideSquare: 1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: calc(100vh - 130px);
+    margin-top: 70px;
+    position: relative;
+}
+
+/********************
+    HEADER
+********************/
+header {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1.5rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, .4);
+    z-index: 10;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header__logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+select {
+    border: none;
+    height: 20px;
+    margin-right: 1rem;
+    font-size: 16px;
+    outline: none;
+}
+
+.header__playgame {
+    background-color: #FFFFFF;
+    padding: .5rem 1.5rem;
+    border: 0;
+    border-radius: .5rem;
+    color: #111827;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all .2s linear;
+}
+
+.header__playgame:hover {
+    background-color: #f9fafb;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+
+.header__playgame:active {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+/********************
+    FIELD
+********************/
+.field__container {
+    background-color: #a4ec9c;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field__grid {
+    height: 600px;
+    width: 600px;
+    border: 1px solid black;
+    /* border-width: thin; */
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, .2);
+}
+
+.cell {
+    background-color: lightgray;
+    font-size: 12px;
+    border: 1px solid black;
+    width: calc(100% / var(--sideSquare));
+    height: calc(100% / var(--sideSquare));
+    transition: background-color .15s linear;
+}
+
+.cell.active {
+    background-image: url("../img/fiore.svg");
+    background-position: center;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-color: lightgreen;
+    color: white;
+}
+
+/********************
+    FOOTER
+********************/
+footer {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+footer span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+footer span a {
+    color: #6ed663;
+}
+/********************
+    popup
+********************/
+.popup {
+    background-color: white;
+    width: 450px;
+    height: 250px;
+    padding: 2rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 6px 6px 4px rgba(0, 0, 0, .2);
+}
+
+.popup h2 {
+    margin-bottom: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}
