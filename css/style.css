@@ -109,9 +109,17 @@ select {
 .cell.active {
     background-image: url("../img/fiore.svg");
     background-position: center;
-    background-size: 30px 30px;
+    background-size: 35px 35px;
     background-repeat: no-repeat;
     background-color: lightgreen;
+    color: white;
+}
+.cell.bomb {
+    background-color: rgb(254, 95, 37);
+    background-image: url("../img/bomba.svg");
+    background-position: center;
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
     color: white;
 }
 
