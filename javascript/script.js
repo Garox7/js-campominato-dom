@@ -44,24 +44,41 @@ const playButton = document.querySelector('.header__playgame');
 const gridElement = document.querySelector('.field__grid');
 const popupElement = document.querySelector('.popup');
 
+//funzione per creare dei numeri random
+function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min +1)) + min;
+}
+
+//funzione per creare un'array di numeri random che non siano uguali tra loro
+function getMines(numberMines, min, max) {
+    const randomArray = [];
+    for (let i = 0; i < numberMines; i++){
+        do {
+            randomNum = getRandomInteger(min, max);
+        } while (randomArray.includes(randomNum))
+        randomArray.push(randomNum);
+    }
+
+    console.log(randomArray);
+    return randomArray
+}
+
 
 playButton.addEventListener('click', function() {
     gridElement.innerHTML= '';
-
     gridElement.classList.remove('hidden');
     popupElement.classList.add('hidden');
 
     const numberCells = selectLevel.value;
-
     const cellSize = Math.sqrt(numberCells);
-
     gridElement.style.setProperty('--sideSquare', cellSize);
+
+    arrayBomb = getMines(16, 1, numberCells);
 
     for(let i = 0; i <= numberCells; i++) {
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         cellElement.innerHTML = [i];
         gridElement.append(cellElement);
-
     }
 })
