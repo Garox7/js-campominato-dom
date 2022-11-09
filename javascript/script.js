@@ -9,12 +9,59 @@ Funzione al bottone play:
     - Definiamo la larghezza, nonchè l'altezza di ogni cella, andando a calcolare la radice quadrata del numero di celle
     - Inseriamo il valore ricavato prima per attribuirlo ad una variabile css che determina la width e la height
     
-    -Creiamo un'array contenente 16 numeri random che rappresenteranno le bombe (anche tramite funzione)
+    -Creiamo un'arrayDiBombe contenente 16 numeri random che rappresenteranno le bombe (anche tramite funzione)
         - utilizziamo una funzione di generazione di numeri random
         - questi numeri saranno inseriti dentro l'array solo se non sono doppioni PER 16 VOLTE
+    
+    -Creiamo un FOR che itera per un numero di volte uguale alle celle (che variano in base alla difficoltà)
+        - creiamo i div
+        - aggiungiamo la classe .cell
+        - ad ogni cella attribuiamo un numero con .innerHTML = i;
+        - inseriamo le celle nella griglia
+        - aggiungiamo un addEventListener ad ogni cella che ha funzione di:
+
+            - SE arrayDiBombe include il numero stesso della cella .include(this.innerHTML) (quindi è una bomba)
+                - Aggiungiamo la classe .bomb alle celle che ne corrispondono
+                
+                - disabilitiamo il click a tutte le celle con funzione che:
+                    - selezioniamo tutte le classi .cell (così da effettuare un controllo su tutte)
+
+                    - Apriamo un ciclo FOR che itera per il numero delle celle:
+                        - prendiamo dentro una costante tutti i numeri delle celle
+                            - SE si (cioè è vero) e arrayDiBombe include i numeri delle celle
+                                - a tutte le celle corrispondenti aggiungiamo la classe .bomb
+                            togliamo l'eventListener a tutti
+            
+            - ALTRIMENTI
+                - andiamo avanti e rimuoviamo l'event listener dalla cella cliccata per evitare di accumulare punteggio
+                - aumentiamo la variabile punteggio 
+                -SE il punteggio è = al punteggio massimo consentito (.cell - .bomb)
+                    - fine gioco, vittoria.
     
 */
 const selectLevel = document.querySelector('#select-difficulty');
 const playButton = document.querySelector('.header__playgame');
 const gridElement = document.querySelector('.field__grid');
 const popupElement = document.querySelector('.popup');
+
+
+playButton.addEventListener('click', function() {
+    gridElement.innerHTML= '';
+
+    gridElement.classList.remove('hidden');
+    popupElement.classList.add('hidden');
+
+    const numberCells = selectLevel.value;
+
+    const cellSize = Math.sqrt(numberCells);
+
+    gridElement.style.setProperty('--sideSquare', cellSize);
+
+    for(let i = 0; i <= numberCells; i++) {
+        const cellElement = document.createElement('div');
+        cellElement.classList.add('cell');
+        cellElement.innerHTML = [i];
+        gridElement.append(cellElement);
+
+    }
+})
