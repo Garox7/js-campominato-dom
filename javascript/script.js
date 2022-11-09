@@ -62,7 +62,34 @@ function getMines(numberMines, min, max) {
     console.log(randomArray);
     return randomArray
 }
+//funzione di controllo che l'elemento cliccato sia una bomba
+function stopGame(showMines) {
+    const cellList = gridElement.querySelectorAll('.cell');
 
+    for(let i = 0; i <= cellList.length; i++) {
+        const innerCell = parseInt(cellList[i].innerHTML);
+        
+        if (showMines && arrayBomb.includes(innerCell)) {
+            cellList[i].classList.add('bomb');
+
+            console.log(cellList[i]);
+        }
+
+        cellList[i].removeEventListener('click', clickCell);
+    }
+}
+
+//funzione di click di ogni cella 
+function clickCell() {
+    if (arrayBomb.includes(parseInt(this.innerHTML))) {
+        this.classList.add('bomb');
+
+        stopGame(true); //crea funzione
+    } else {
+        this.removeEventListener('click', clickCell);
+        this.classList.add('active');
+    }
+}
 
 playButton.addEventListener('click', function() {
     gridElement.innerHTML= '';
@@ -80,5 +107,7 @@ playButton.addEventListener('click', function() {
         cellElement.classList.add('cell');
         cellElement.innerHTML = [i];
         gridElement.append(cellElement);
+
+        cellElement.addEventListener('click', clickCell);
     }
 })
