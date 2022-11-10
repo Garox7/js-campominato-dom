@@ -141,6 +141,7 @@ footer span {
 footer span a {
     color: #6ed663;
 }
+
 /********************
     popup
 ********************/
@@ -155,8 +156,8 @@ footer span a {
     top: 0;
     left: 0; 
     backdrop-filter: brightness(50%);
-
 }
+
 .popup {
     background-color: white;
     width: 450px;

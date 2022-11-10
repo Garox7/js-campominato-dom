@@ -62,6 +62,7 @@ function getMines(numberMines, min, max) {
     console.log(randomArray);
     return randomArray
 }
+
 //funzione di controllo che l'elemento cliccato sia una bomba
 function stopGame(showMines) {
     const cellList = gridElement.querySelectorAll('.cell');
@@ -103,14 +104,13 @@ function loseGame() {
         </div>`
 }
 
-
 //funzione di click di ogni cella 
 function clickCell() {
     if (arrayBomb.includes(parseInt(this.innerHTML))) {
         this.classList.add('bomb');
 
         stopGame(true);
-        setTimeout(loseGame, 3000);
+        setTimeout(loseGame, 1000);
 
     } else {
         this.removeEventListener('click', clickCell);
@@ -120,7 +120,7 @@ function clickCell() {
         console.log('punteggio:', score);
 
         if (score == maxScore) {
-            setTimeout(winGame, 3000);
+            setTimeout(winGame, 1000);
             stopGame(false);
         }
     }
