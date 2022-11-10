@@ -144,6 +144,19 @@ footer span a {
 /********************
     popup
 ********************/
+.back__popup {
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    backdrop-filter: brightness(50%);
+
+}
 .popup {
     background-color: white;
     width: 450px;
@@ -156,10 +169,6 @@ footer span a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     box-shadow: 6px 6px 4px rgba(0, 0, 0, .2);
 }
 

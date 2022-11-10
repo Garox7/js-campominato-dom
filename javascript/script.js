@@ -42,7 +42,7 @@ Funzione al bottone play:
 const selectLevel = document.querySelector('#select-difficulty');
 const playButton = document.querySelector('.header__playgame');
 const gridElement = document.querySelector('.field__grid');
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('.back__popup');
 
 //funzione per creare dei numeri random
 function getRandomInteger(min, max) {
@@ -66,43 +66,86 @@ function getMines(numberMines, min, max) {
 function stopGame(showMines) {
     const cellList = gridElement.querySelectorAll('.cell');
 
-    for(let i = 0; i <= cellList.length; i++) {
+    for(let i = 0; i < cellList.length; i++) {
         const innerCell = parseInt(cellList[i].innerHTML);
-        
+
         if (showMines && arrayBomb.includes(innerCell)) {
             cellList[i].classList.add('bomb');
 
-            console.log(cellList[i]);
+            // console.log(cellList[i]);
         }
 
         cellList[i].removeEventListener('click', clickCell);
     }
 }
 
+function winGame() {
+    gridElement.classList.add('hidden');
+    popupElement.classList.remove('hidden');
+    popupElement.innerHTML = '';
+  
+    popupElement.innerHTML = `
+    <div class="popup">
+        <h2>Complimenti, hai vinto!</h2>
+        <p>Il tuo punteggio è di: ${score}</p>
+    </div>`
+}
+
+function loseGame() {
+    gridElement.classList.add('hidden');
+    popupElement.classList.remove('hidden');
+    popupElement.innerHTML = '';
+  
+    popupElement.innerHTML = `
+    <div class="popup">
+        <h2>Che sfortuna, hai perso!</h2>
+        <p>Il tuo punteggio è di: ${score}</p>
+        </div>`
+}
+
+
 //funzione di click di ogni cella 
 function clickCell() {
     if (arrayBomb.includes(parseInt(this.innerHTML))) {
         this.classList.add('bomb');
 
-        stopGame(true); //crea funzione
+        stopGame(true);
+        setTimeout(loseGame, 3000);
+
     } else {
         this.removeEventListener('click', clickCell);
         this.classList.add('active');
+        score++;
+
+        console.log('punteggio:', score);
+
+        if (score == maxScore) {
+            setTimeout(winGame, 3000);
+            stopGame(false);
+        }
     }
 }
 
+let score;
+let maxScore;
 playButton.addEventListener('click', function() {
+    score = 0;
+
     gridElement.innerHTML= '';
     gridElement.classList.remove('hidden');
     popupElement.classList.add('hidden');
 
     const numberCells = selectLevel.value;
+    
+    nMines = 16;
+    maxScore = numberCells - nMines;
+
     const cellSize = Math.sqrt(numberCells);
     gridElement.style.setProperty('--sideSquare', cellSize);
 
     arrayBomb = getMines(16, 1, numberCells);
 
-    for(let i = 0; i <= numberCells; i++) {
+    for(let i = 1; i <= numberCells; i++) {
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
         cellElement.innerHTML = [i];
