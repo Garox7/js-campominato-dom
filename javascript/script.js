@@ -37,8 +37,8 @@ Funzione al bottone play:
                 - aumentiamo la variabile punteggio 
                 -SE il punteggio è = al punteggio massimo consentito (.cell - .bomb)
                     - fine gioco, vittoria.
-    
 */
+
 const selectLevel = document.querySelector('#select-difficulty');
 const playButton = document.querySelector('.header__playgame');
 const gridElement = document.querySelector('.field__grid');
